@@ -1,41 +1,48 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-@custom-variant dark (&:where(.dark, .dark *));
+@font-face {
+  font-family: 'Alte Haas Grotesk';
+  src: url('/fonts/AlteHaasGroteskBold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-accent: var(--accent);
-}
-
-:root {
-  --background: #FDFAE8;
-  --foreground: #171717;
-  --accent: #0E6931;
-}
-
-.dark {
-  --background: #1a1a1a;
-  --foreground: #e5e5e5;
-  --accent: #4ade80;
+  --color-background: #ffffff;
+  --color-foreground: #171717;
+  --color-primary: #3D3BFF;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-weight: 400;
-  transition: background-color 0.3s, color 0.3s;
+}
+
+.font-display {
+  font-family: 'Alte Haas Grotesk', 'Inter', sans-serif;
+  font-weight: 700;
 }
 
 .prose {
   font-family: inherit;
-  --tw-prose-body: var(--foreground);
-  --tw-prose-headings: var(--foreground);
-  --tw-prose-links: var(--accent);
-  --tw-prose-bold: var(--foreground);
-  --tw-prose-counters: var(--foreground);
-  --tw-prose-bullets: var(--foreground);
-  --tw-prose-quotes: var(--foreground);
+  --tw-prose-body: var(--color-foreground);
+  --tw-prose-headings: var(--color-foreground);
+  --tw-prose-links: var(--color-primary);
+  --tw-prose-bold: var(--color-foreground);
+  --tw-prose-counters: var(--color-foreground);
+  --tw-prose-bullets: var(--color-foreground);
+  --tw-prose-quotes: var(--color-foreground);
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
 }
