@@ -27,45 +27,61 @@ export default function HomeContent() {
     <>
       {/* Home page — fixed in place, always visible behind the overlay */}
       <div className="fixed inset-0 z-0">
-        <main className="min-h-screen px-6 py-16 md:px-12">
-          <div className="max-w-3xl mx-auto flex flex-col md:flex-row gap-12 md:gap-20">
-            <div className="md:pt-1 shrink-0">
-              <Sidebar />
-            </div>
-
+        <main className="min-h-screen">
+          <motion.div
+            className="relative w-full h-screen"
+            initial="hidden"
+            animate="show"
+            variants={container}
+          >
+            {/* Sidebar — upper-left, inset 10vw from edge */}
             <motion.div
-              className="flex-1"
-              initial="hidden"
-              animate="show"
-              variants={container}
+              variants={item}
+              className="absolute top-12 left-[10vw] md:top-16"
             >
-              <motion.div variants={item} className="flex items-start justify-between mb-12">
-                <h1 className="font-display text-5xl md:text-6xl text-primary leading-tight">
-                  Adrian Wu
-                </h1>
-                <button
-                  onClick={() => setInfoOpen(true)}
-                  className="mt-2 hover:scale-110 transition-transform cursor-pointer"
-                  aria-label="About me"
-                >
-                  <Image
-                    src="/face-icon.png"
-                    alt="About me"
-                    width={80}
-                    height={80}
-                    className="object-contain"
-                  />
-                </button>
-              </motion.div>
+              <Sidebar />
+            </motion.div>
 
+            {/* Name — top of screen, aligned with central column */}
+            <motion.div
+              variants={item}
+              className="absolute top-6 left-[30vw] md:top-8"
+            >
+              <h1 className="font-display text-5xl md:text-6xl text-primary leading-tight">
+                Adrian Wu
+              </h1>
+            </motion.div>
+
+            {/* Face icon — top-right corner */}
+            <motion.div
+              variants={item}
+              className="absolute top-6 right-6 md:top-8 md:right-12"
+            >
+              <button
+                onClick={() => setInfoOpen(true)}
+                className="hover:scale-110 transition-transform cursor-pointer"
+                aria-label="About me"
+              >
+                <Image
+                  src="/face-icon.png"
+                  alt="About me"
+                  width={80}
+                  height={80}
+                  className="object-contain"
+                />
+              </button>
+            </motion.div>
+
+            {/* Central column — shifted right 10vw from center */}
+            <div className="absolute left-[30vw] top-32 md:top-40 w-[60%] md:w-[50%]">
               <motion.p
                 variants={item}
                 className="text-xl md:text-2xl leading-relaxed text-foreground/70 max-w-lg"
               >
                 figuring stuff out
               </motion.p>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
         </main>
       </div>
 
