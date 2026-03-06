@@ -143,7 +143,7 @@ export default function Overlay() {
         <rect
           width="100%"
           height="100%"
-          fill="rgba(0, 0, 255, 0.92)"
+          fill="rgba(0, 0, 220, 0.92)"
           mask="url(#text-knockout)"
         />
 
