@@ -5,7 +5,11 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 export default function Overlay() {
   const [isMobile, setIsMobile] = useState(false);
   const [adrianBox, setAdrianBox] = useState<{ width: number; height: number } | null>(null);
+  const [wuWidth, setWuWidth] = useState(0);
+  const [est06Box, setEst06Box] = useState<{ width: number; height: number } | null>(null);
   const adrianRef = useRef<SVGTextElement>(null);
+  const wuRef = useRef<SVGTextElement>(null);
+  const est06Ref = useRef<SVGTextElement>(null);
 
   const scrollToContent = useCallback(() => {
     window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
@@ -17,6 +21,13 @@ export default function Overlay() {
       const bbox = adrianRef.current.getBBox();
       setAdrianBox({ width: bbox.width, height: bbox.height });
     }
+    if (wuRef.current) {
+      setWuWidth(wuRef.current.getBBox().width);
+    }
+    if (est06Ref.current) {
+      const bbox = est06Ref.current.getBBox();
+      setEst06Box({ width: bbox.width, height: bbox.height });
+    }
   }, []);
 
   useEffect(() => {
@@ -25,8 +36,8 @@ export default function Overlay() {
     return () => window.removeEventListener('resize', measure);
   }, [measure]);
 
-  const px = isMobile ? 16 : 28;
-  const pt = isMobile ? 20 : 28;
+  const px = isMobile ? 8 : 10;
+  const pt = isMobile ? 8 : 10;
   const fontSize = isMobile ? '18vw' : '13.5vw';
 
   const textStyle: React.CSSProperties = {
@@ -47,6 +58,19 @@ export default function Overlay() {
   // (W's diagonal stroke means lower-left is ~12% of text height right of the text x)
   const wSlant = adrianBox ? adrianBox.height * 0.12 : 0;
   const wuX = barX + barWidth - wSlant;
+
+  // TM superscript — positioned at top-right of WU, ~25% font size
+  const tmGap = adrianBox ? adrianBox.height * 0.02 : 0;
+  const tmX = wuX + wuWidth + tmGap;
+  const tmDy = adrianBox ? adrianBox.height * 0.04 : 0;
+  const tmStyle: React.CSSProperties = {
+    ...textStyle,
+    fontSize: isMobile ? '10.8vw' : '8.1vw',
+  };
+
+  // Line 2: EST06
+  const lineGap = adrianBox ? adrianBox.height * -0.25 : 0;
+  const line2Y = pt + (adrianBox ? adrianBox.height + lineGap : 0);
 
   return (
     <section
@@ -81,6 +105,7 @@ export default function Overlay() {
                   <animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.49;0.5;1" dur="1s" repeatCount="indefinite" />
                 </rect>
                 <text
+                  ref={wuRef}
                   x={wuX}
                   y={pt}
                   style={textStyle}
@@ -88,6 +113,26 @@ export default function Overlay() {
                   dominantBaseline="hanging"
                 >
                   WU
+                </text>
+                <text
+                  x={tmX}
+                  y={pt}
+                  dy={tmDy}
+                  style={tmStyle}
+                  fill="black"
+                  dominantBaseline="hanging"
+                >
+                  TM
+                </text>
+                <text
+                  ref={est06Ref}
+                  x={px}
+                  y={line2Y}
+                  style={textStyle}
+                  fill="black"
+                  dominantBaseline="hanging"
+                >
+                  EST06
                 </text>
               </>
             )}
@@ -119,8 +164,8 @@ export default function Overlay() {
               y={barY}
               width={barWidth}
               height={barHeight}
-              rx={4}
-              ry={4}
+              rx={barRx}
+              ry={barRx}
               fill="rgba(180, 180, 220, 0.7)"
             >
               <animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.49;0.5;1" dur="1s" repeatCount="indefinite" />
@@ -133,6 +178,25 @@ export default function Overlay() {
               dominantBaseline="hanging"
             >
               WU
+            </text>
+            <text
+              x={tmX}
+              y={pt}
+              dy={tmDy}
+              style={tmStyle}
+              fill="rgba(180, 180, 220, 0.7)"
+              dominantBaseline="hanging"
+            >
+              TM
+            </text>
+            <text
+              x={px}
+              y={line2Y}
+              style={textStyle}
+              fill="rgba(180, 180, 220, 0.7)"
+              dominantBaseline="hanging"
+            >
+              EST06
             </text>
           </>
         )}
