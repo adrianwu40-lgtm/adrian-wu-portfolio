@@ -3,7 +3,7 @@
 ## Tech Stack
 - Next.js 16 + TypeScript + Tailwind CSS
 - Framer Motion for animations
-- Deployed via Vercel to adrianwu.com (auto-deploys on push to main)
+- **NOT YET DEPLOYED** — need to set up Vercel (see Deployment Issue below)
 
 ## Project Structure
 - `components/HomeContent.tsx` — Main homepage layout (fixed behind overlay)
@@ -21,14 +21,11 @@
 
 ## Deployment Issue (In Progress)
 - Domain: adrianwu.com, registered on **Namecheap**
-- **Problem**: Old Vercel account (school email) is connected to the domain with the wrong GitHub account
-- **Goal**: Deploy from `adrianwu40-lgtm/adrian-wu-portfolio` via personal email Vercel account
-- **Steps remaining**:
-  1. Remove `adrianwu.com` domain from old Vercel project (school email account)
-  2. In personal Vercel account, import `adrian-wu-portfolio` repo — currently the GitHub app is installed but Vercel isn't showing the repo
-  3. May need to: uninstall Vercel GitHub App from old GH account, then reinstall fresh on `adrianwu40-lgtm` and authorize for personal Vercel
-  4. Once deployed, add `adrianwu.com` domain in new Vercel project settings
-  5. Update Namecheap DNS: A record → `76.76.21.21`, CNAME `www` → `cname.vercel-dns.com`
+- Want to deploy via **Vercel** (not GitHub Pages)
+- **Root cause**: GitHub account `adrianwu40-lgtm` is still associated with a deleted Vercel account (old school email). This blocks "Continue with GitHub" signup and the GitHub app integration.
+- **Old school email Vercel account was deleted**, but GitHub association wasn't cleaned up
+- **Next step**: Contact Vercel support (https://vercel.com/help) to release the `adrianwu40-lgtm` GitHub association from the deleted account. Then sign up fresh with "Continue with GitHub."
+- After Vercel is set up: add `adrianwu.com` domain, update Namecheap DNS (A record → `76.76.21.21`, CNAME `www` → `cname.vercel-dns.com`)
 
 ## What We Still Have To Do
 - [ ] Fix Vercel deployment (see above)
