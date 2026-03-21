@@ -47,7 +47,7 @@ export default function HomeContent() {
               variants={item}
               className="absolute top-6 left-[30vw] md:top-8"
             >
-              <h1 className="font-display text-5xl md:text-6xl text-primary leading-tight">
+              <h1 className="font-display text-5xl md:text-6xl text-foreground leading-tight">
                 Adrian Wu
               </h1>
             </motion.div>
@@ -76,7 +76,7 @@ export default function HomeContent() {
             <div className="absolute left-[30vw] top-32 md:top-40 w-[60%] md:w-[50%]">
               <motion.p
                 variants={item}
-                className="text-xl md:text-2xl leading-relaxed text-foreground/70 max-w-lg"
+                className="text-xl md:text-2xl leading-relaxed text-secondary max-w-lg"
               >
                 figuring stuff out
               </motion.p>

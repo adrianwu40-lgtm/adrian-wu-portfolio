@@ -72,90 +72,42 @@ export default function Overlay() {
   const lineGap = adrianBox ? adrianBox.height * -0.25 : 0;
   const line2Y = pt + (adrianBox ? adrianBox.height + lineGap : 0);
 
+  const textColor = '#B0B4DC';
+
   return (
     <section
       className="relative z-10 h-screen cursor-pointer"
       onClick={scrollToContent}
     >
       <svg className="w-full h-full" style={{ userSelect: 'none' }}>
-        <defs>
-          <mask id="text-knockout">
-            <rect width="100%" height="100%" fill="white" />
-            <text
-              ref={adrianRef}
-              x={px}
-              y={pt}
-              style={textStyle}
-              fill="black"
-              dominantBaseline="hanging"
-            >
-              ADRIAN
-            </text>
-            {adrianBox && (
-              <>
-                <rect
-                  x={barX}
-                  y={barY}
-                  width={barWidth}
-                  height={barHeight}
-                  rx={barRx}
-                  ry={barRx}
-                  fill="black"
-                >
-                  <animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.49;0.5;1" dur="1s" repeatCount="indefinite" />
-                </rect>
-                <text
-                  ref={wuRef}
-                  x={wuX}
-                  y={pt}
-                  style={textStyle}
-                  fill="black"
-                  dominantBaseline="hanging"
-                >
-                  WU
-                </text>
-                <text
-                  x={tmX}
-                  y={pt}
-                  dy={tmDy}
-                  style={tmStyle}
-                  fill="black"
-                  dominantBaseline="hanging"
-                >
-                  TM
-                </text>
-                <text
-                  ref={est06Ref}
-                  x={px}
-                  y={line2Y}
-                  style={textStyle}
-                  fill="black"
-                  dominantBaseline="hanging"
-                >
-                  EST06
-                </text>
-              </>
-            )}
-          </mask>
-        </defs>
-
-        {/* Blue overlay with text-shaped holes */}
+        {/* Solid blue background */}
         <rect
           width="100%"
           height="100%"
           fill="rgba(0, 0, 220, 0.92)"
-          mask="url(#text-knockout)"
         />
 
-        {/* Semi-transparent text overlay */}
+        {/* Solid text — no knockout/see-through */}
         <text
+          ref={adrianRef}
           x={px}
           y={pt}
           style={textStyle}
-          fill="rgba(180, 180, 220, 0.7)"
+          fill={textColor}
           dominantBaseline="hanging"
         >
           ADRIAN
+        </text>
+        {/* WU rendered unconditionally so wuRef can measure it */}
+        <text
+          ref={wuRef}
+          x={wuX}
+          y={pt}
+          style={textStyle}
+          fill={textColor}
+          dominantBaseline="hanging"
+        >
+          WU
         </text>
         {adrianBox && (
           <>
@@ -166,34 +118,28 @@ export default function Overlay() {
               height={barHeight}
               rx={barRx}
               ry={barRx}
-              fill="rgba(180, 180, 220, 0.7)"
+              fill={textColor}
             >
               <animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.49;0.5;1" dur="1s" repeatCount="indefinite" />
             </rect>
+            {wuWidth > 0 && (
+              <text
+                x={tmX}
+                y={pt}
+                dy={tmDy}
+                style={tmStyle}
+                fill={textColor}
+                dominantBaseline="hanging"
+              >
+                TM
+              </text>
+            )}
             <text
-              x={wuX}
-              y={pt}
-              style={textStyle}
-              fill="rgba(180, 180, 220, 0.7)"
-              dominantBaseline="hanging"
-            >
-              WU
-            </text>
-            <text
-              x={tmX}
-              y={pt}
-              dy={tmDy}
-              style={tmStyle}
-              fill="rgba(180, 180, 220, 0.7)"
-              dominantBaseline="hanging"
-            >
-              TM
-            </text>
-            <text
+              ref={est06Ref}
               x={px}
               y={line2Y}
               style={textStyle}
-              fill="rgba(180, 180, 220, 0.7)"
+              fill={textColor}
               dominantBaseline="hanging"
             >
               EST06
