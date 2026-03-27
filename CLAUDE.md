@@ -6,21 +6,22 @@
 - **NOT YET DEPLOYED** — need to set up Vercel (see Deployment Issue below)
 
 ## Project Structure
-- `components/HomeContent.tsx` — Main homepage layout (fixed behind overlay)
-- `components/Overlay.tsx` — Blue overlay with SVG knockout text effect
-- `components/Sidebar.tsx` — Left nav (Home, Essays, Projects)
-- `components/InfoCard.tsx` — About me popup triggered by face icon
+- `components/HomeContent.tsx` — Main homepage layout with two-column blurbs and photo gallery
+- `components/Overlay.tsx` — Blue overlay with SVG text, click-to-dismiss (no scroll)
+- `components/HoverImage.tsx` — Reusable hover-to-reveal image component (edge-aware positioning, mobile tap support)
+- `components/Sidebar.tsx` — Nav (Home, Essays, Projects) — lives below the fold
+- `components/InfoCard.tsx` — About me popup (currently not linked from homepage)
+- `public/images/` — Portfolio photos (rhythm, michelin, volleyball, conducting, kitchen)
 
 ## What We Did
-- Rearranged homepage to match mollymielke.com-inspired reference layout
-- "Adrian Wu" at top of screen, left-aligned at 30vw
-- Face icon in top-right corner (opens InfoCard)
-- Sidebar in upper-left at 10vw inset
-- Central blurb column at 30vw ("figuring stuff out" placeholder)
-- Overlay uses SVG text on solid blue background (was knockout/see-through, changed to solid)
-- Updated color palette: background #FAFAFA, text #1A1A2E (dark navy), primary #2D2BCC, secondary #64648C
-- Added Newsreader font (Google Fonts) but decided against it — serif doesn't match the minimal overlay vibe
-- Heading stays Alte Haas Grotesk Bold to match overlay
+- Overlay is now click-to-dismiss only (no scrolling back to it)
+- Homepage is a clean two-column blurb layout (Newsreader serif font) with no heading or nav cluttering it
+- Left blurb: intro + experience (Rhythm, restaurants, UIUC)
+- Right blurb: interests + contact (court, concert hall, kitchen, LinkedIn, email)
+- HoverImage component: hover over trigger words (navy blue text) to see floating photos with edge-aware positioning
+- Right blurb has a "gallery" interaction: three dotted outlines below text that fill in when you hover (preview) or click (lock in) the words court/concert hall/kitchen
+- Sidebar navigation moved below the fold with a bouncing down arrow to indicate scroll
+- Color palette: background #FAFAFA, text #1A1A2E, primary #2D2BCC, secondary #64648C, hover-trigger text #1A1A6E
 
 ## Deployment Issue (In Progress)
 - Domain: adrianwu.com, registered on **Namecheap**
@@ -31,10 +32,10 @@
 - After Vercel is set up: add `adrianwu.com` domain, update Namecheap DNS (A record → `76.76.21.21`, CNAME `www` → `cname.vercel-dns.com`)
 
 ## What We Still Have To Do
-- [ ] Fix Vercel deployment (see above)
-- [ ] Continue refining typography and UI — want homepage to match the minimalistic vibe of the overlay. Tried serif (Newsreader), didn't fit. Explore other directions.
-- [ ] Add info blurb content and flesh out sidebar content
-- [ ] General content pass across all pages
+- [ ] Fix Vercel deployment (see Deployment Issue above)
+- [ ] Refine colors and typography across the site
+- [ ] Build out the overall layout of the website beyond the opening page
+- [ ] Create a more detailed restaurant subpage
 
 ---
 
