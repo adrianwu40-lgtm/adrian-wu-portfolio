@@ -35,6 +35,10 @@
 - [ ] Fill in Text (writing/essays) section content on page two
 - [ ] Build out Restaurants subpage with detailed content
 - [ ] Visual design pass — better layout, spacing, positioning on homepage
+- [ ] Contact card — cutout face image as a hovering universal contact card in the top corner; tapping it reveals blue text with contact info (replaces current InfoCard approach)
+- [ ] Clean up loading states — box outlines, overlays, transitions, polish all the rough edges
+- [ ] Decide on mobile optimization (TBD)
+- [ ] Animation & delight pass (after content is solid) — multiple sweeps to add subtle animations, hover effects, and fun design touches
 
 ---
 
