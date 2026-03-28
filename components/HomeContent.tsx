@@ -168,30 +168,80 @@ export default function HomeContent() {
               className="flex justify-center mt-16 md:mt-24"
             >
               <motion.svg
-                width="24"
-                height="40"
-                viewBox="0 0 24 40"
+                width="28"
+                height="140"
+                viewBox="0 0 28 140"
                 fill="none"
-                className="text-foreground/40"
-                animate={{ y: [0, 8, 0] }}
+                animate={{ y: [0, 12, 0] }}
                 transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
               >
-                <path
-                  d="M12 0v36m0 0l-10-10m10 10l10-10"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                {/* Vertical line */}
+                <line
+                  x1="14"
+                  y1="0"
+                  x2="14"
+                  y2="118"
+                  stroke="#0000DD"
+                  strokeWidth="4"
+                />
+                {/* Filled arrowhead */}
+                <polygon
+                  points="14,140 2,114 26,114"
+                  fill="#0000DD"
                 />
               </motion.svg>
             </motion.div>
           </section>
 
-          {/* Below the fold — navigation section */}
-          <section className="min-h-screen flex items-start px-6 md:px-[10vw] pt-20 md:pt-32">
-            <motion.div variants={item}>
-              <Sidebar />
+          {/* Below the fold — page two */}
+          <section className="min-h-screen px-6 md:px-[10vw] pt-0">
+            {/* Sticky top bar */}
+            <motion.div
+              variants={item}
+              className="sticky top-0 z-10 flex items-center justify-between py-4 bg-background/90 backdrop-blur-sm border-b border-foreground/10"
+            >
+              <span className="text-sm font-semibold tracking-wide text-foreground">Adrian Wu</span>
+              <a
+                href="mailto:adrianwu2028@u.northwestern.edu"
+                className="text-sm text-foreground/50 hover:text-foreground transition-colors"
+              >
+                Contact
+              </a>
             </motion.div>
+
+            {/* Sidebar + content layout */}
+            <div className="flex gap-12 md:gap-16 pt-12 md:pt-16">
+              {/* Fixed sidebar */}
+              <motion.div variants={item} className="hidden md:block w-32 shrink-0">
+                <div className="sticky top-20">
+                  <Sidebar />
+                </div>
+              </motion.div>
+
+              {/* Main content area */}
+              <motion.div variants={item} className="flex-1 min-w-0">
+                <div id="experience" className="mb-24">
+                  <h2 className="text-xs uppercase tracking-widest text-foreground/40 mb-6">Experience</h2>
+                  <div className="h-48 border border-dashed border-foreground/20 rounded-md flex items-center justify-center text-foreground/30 text-sm">
+                    Experience content
+                  </div>
+                </div>
+
+                <div id="text" className="mb-24">
+                  <h2 className="text-xs uppercase tracking-widest text-foreground/40 mb-6">Text</h2>
+                  <div className="h-48 border border-dashed border-foreground/20 rounded-md flex items-center justify-center text-foreground/30 text-sm">
+                    Writing &amp; essays
+                  </div>
+                </div>
+
+                <div id="restaurants" className="mb-24">
+                  <h2 className="text-xs uppercase tracking-widest text-foreground/40 mb-6">Restaurants</h2>
+                  <div className="h-48 border border-dashed border-foreground/20 rounded-md flex items-center justify-center text-foreground/30 text-sm">
+                    Restaurant subpage
+                  </div>
+                </div>
+              </motion.div>
+            </div>
           </section>
         </motion.div>
       </main>

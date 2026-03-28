@@ -1,37 +1,33 @@
 'use client';
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-
 const links = [
-  { href: '/', label: 'Home' },
-  { href: '/essays', label: 'Essays' },
-  { href: '/projects', label: 'Projects' },
+  { href: '#experience', label: 'Experience' },
+  { href: '#text', label: 'Text' },
+  { href: '#restaurants', label: 'Restaurants' },
 ];
 
-export default function Sidebar() {
-  const pathname = usePathname();
+interface SidebarProps {
+  activeSection?: string;
+}
 
+export default function Sidebar({ activeSection }: SidebarProps) {
   return (
-    <nav className="flex flex-row md:flex-col gap-4 md:gap-3">
+    <nav className="flex flex-col gap-3">
       {links.map((link) => {
-        const active =
-          link.href === '/'
-            ? pathname === '/'
-            : pathname.startsWith(link.href);
+        const isActive = activeSection === link.href.replace('#', '');
 
         return (
-          <Link
+          <a
             key={link.href}
             href={link.href}
-            className={`text-sm transition-colors ${
-              active
+            className={`text-sm tracking-wide uppercase transition-colors ${
+              isActive
                 ? 'text-primary font-semibold'
                 : 'text-foreground/50 hover:text-foreground'
             }`}
           >
             {link.label}
-          </Link>
+          </a>
         );
       })}
     </nav>

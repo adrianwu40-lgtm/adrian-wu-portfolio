@@ -3,7 +3,7 @@
 ## Tech Stack
 - Next.js 16 + TypeScript + Tailwind CSS
 - Framer Motion for animations
-- **NOT YET DEPLOYED** — need to set up Vercel (see Deployment Issue below)
+- Deployed via **Vercel** at adrianwu.com
 
 ## Project Structure
 - `components/HomeContent.tsx` — Main homepage layout with two-column blurbs and photo gallery
@@ -21,21 +21,20 @@
 - HoverImage component: hover over trigger words (navy blue text) to see floating photos with edge-aware positioning
 - Right blurb has a "gallery" interaction: three dotted outlines below text that fill in when you hover (preview) or click (lock in) the words court/concert hall/kitchen
 - Sidebar navigation moved below the fold with a bouncing down arrow to indicate scroll
+- Down arrow updated to tall blue arrow with filled arrowhead (#0000DD), bouncing animation
+- Page two wireframe: sticky top bar (name + contact), left sidebar (Experience, Text, Restaurants), placeholder content sections
 - Color palette: background #FAFAFA, text #1A1A2E, primary #2D2BCC, secondary #64648C, hover-trigger text #1A1A6E
 
-## Deployment Issue (In Progress)
+## Deployment
 - Domain: adrianwu.com, registered on **Namecheap**
-- Want to deploy via **Vercel** (not GitHub Pages)
-- **Root cause**: GitHub account `adrianwu40-lgtm` is still associated with a deleted Vercel account (old school email). This blocks "Continue with GitHub" signup and the GitHub app integration.
-- **Old school email Vercel account was deleted**, but GitHub association wasn't cleaned up
-- **Next step**: Contact Vercel support (https://vercel.com/help) to release the `adrianwu40-lgtm` GitHub association from the deleted account. Then sign up fresh with "Continue with GitHub."
-- After Vercel is set up: add `adrianwu.com` domain, update Namecheap DNS (A record → `76.76.21.21`, CNAME `www` → `cname.vercel-dns.com`)
+- Deployed via **Vercel**, connected to GitHub — pushes to main auto-deploy
 
 ## What We Still Have To Do
-- [ ] Fix Vercel deployment (see Deployment Issue above)
 - [ ] Refine colors and typography across the site
-- [ ] Build out the overall layout of the website beyond the opening page
-- [ ] Create a more detailed restaurant subpage
+- [ ] Fill in Experience section content on page two
+- [ ] Fill in Text (writing/essays) section content on page two
+- [ ] Build out Restaurants subpage with detailed content
+- [ ] Visual design pass — better layout, spacing, positioning on homepage
 
 ---
 
