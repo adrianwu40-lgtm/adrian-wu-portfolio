@@ -7,8 +7,8 @@ const sections = [
 ];
 
 interface SidebarProps {
-  activeSection: string;
-  onSectionChange: (section: string) => void;
+  activeSection?: string;
+  onSectionChange?: (section: string) => void;
 }
 
 export default function Sidebar({ activeSection, onSectionChange }: SidebarProps) {
@@ -20,7 +20,7 @@ export default function Sidebar({ activeSection, onSectionChange }: SidebarProps
         return (
           <button
             key={section.key}
-            onClick={() => onSectionChange(section.key)}
+            onClick={() => onSectionChange?.(section.key)}
             className={`text-left text-sm tracking-wide uppercase transition-colors ${
               isActive
                 ? 'text-primary font-semibold'
