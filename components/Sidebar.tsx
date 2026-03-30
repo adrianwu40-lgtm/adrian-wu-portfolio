@@ -1,33 +1,34 @@
 'use client';
 
-const links = [
-  { href: '#experience', label: 'Experience' },
-  { href: '#text', label: 'Text' },
-  { href: '#restaurants', label: 'Restaurants' },
+const sections = [
+  { key: 'experience', label: 'Experience' },
+  { key: 'text', label: 'Text' },
+  { key: 'acknowledgments', label: 'Acknowledgments' },
 ];
 
 interface SidebarProps {
-  activeSection?: string;
+  activeSection: string;
+  onSectionChange: (section: string) => void;
 }
 
-export default function Sidebar({ activeSection }: SidebarProps) {
+export default function Sidebar({ activeSection, onSectionChange }: SidebarProps) {
   return (
     <nav className="flex flex-col gap-3">
-      {links.map((link) => {
-        const isActive = activeSection === link.href.replace('#', '');
+      {sections.map((section) => {
+        const isActive = activeSection === section.key;
 
         return (
-          <a
-            key={link.href}
-            href={link.href}
-            className={`text-sm tracking-wide uppercase transition-colors ${
+          <button
+            key={section.key}
+            onClick={() => onSectionChange(section.key)}
+            className={`text-left text-sm tracking-wide uppercase transition-colors ${
               isActive
                 ? 'text-primary font-semibold'
                 : 'text-foreground/50 hover:text-foreground'
             }`}
           >
-            {link.label}
-          </a>
+            {section.label}
+          </button>
         );
       })}
     </nav>

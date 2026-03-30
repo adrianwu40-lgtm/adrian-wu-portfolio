@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Sidebar from '@/components/Sidebar';
 import Overlay from '@/components/Overlay';
@@ -25,10 +25,77 @@ const galleryItems = [
   { key: 'kitchen', src: '/images/kitchen.jpg', alt: 'Restaurant vibes', aspect: '4/3' },
 ] as const;
 
+function ExperienceSection() {
+  return (
+    <>
+      <h2 className="text-xs uppercase tracking-widest text-foreground/40 mb-6">Experience</h2>
+      <div className="h-48 border border-dashed border-foreground/20 rounded-md flex items-center justify-center text-foreground/30 text-sm">
+        Experience content
+      </div>
+
+      {/* Restaurants — embedded within Experience */}
+      <div className="mt-16">
+        <h3 className="text-xs uppercase tracking-widest text-foreground/40 mb-6">Restaurants</h3>
+        <div className="h-48 border border-dashed border-foreground/20 rounded-md flex items-center justify-center text-foreground/30 text-sm">
+          Restaurant subpage
+        </div>
+      </div>
+    </>
+  );
+}
+
+function TextSection() {
+  return (
+    <>
+      <h2 className="text-xs uppercase tracking-widest text-foreground/40 mb-6">Text</h2>
+      <div className="h-48 border border-dashed border-foreground/20 rounded-md flex items-center justify-center text-foreground/30 text-sm">
+        Writing &amp; essays
+      </div>
+    </>
+  );
+}
+
+function AcknowledgmentsSection() {
+  return (
+    <>
+      <h2 className="text-xs uppercase tracking-widest text-foreground/40 mb-6">Acknowledgments</h2>
+      <div className="max-w-[600px]">
+        <p className="font-heading text-lg leading-[1.8] text-foreground/80 mb-8 italic">
+          None of the interesting things about me would exist without the interesting people around me. This is my attempt at writing them down.
+        </p>
+
+        <div className="space-y-6 font-heading text-[1.05rem] leading-[1.85] text-foreground/75">
+          <p>
+            To <strong className="text-foreground font-semibold">Mom and Dad</strong>, for everything before everything else. For letting me be curious and never once telling me a question was stupid.
+          </p>
+
+          <p>
+            To <strong className="text-foreground font-semibold">[Name]</strong>, who taught me that showing up is the hardest and most important part. To <strong className="text-foreground font-semibold">[Name]</strong>, who showed me what it looks like to care about craft.
+          </p>
+
+          <p>
+            To <strong className="text-foreground font-semibold">[Name]</strong> and the rest of the team at <strong className="text-foreground font-semibold">[Place]</strong>, for the kind of mentorship that doesn&apos;t feel like mentorship — just people who believed in you before you did.
+          </p>
+
+          <p>
+            To every teammate, conductor, chef, and collaborator who made the work better by making the room better. You know who you are.
+          </p>
+
+          <p className="text-foreground/50 text-sm pt-4" style={{ fontFamily: 'var(--font-inter), sans-serif', fontWeight: 400 }}>
+            This list is always growing.
+          </p>
+        </div>
+      </div>
+    </>
+  );
+}
+
 export default function HomeContent() {
   const [overlayVisible, setOverlayVisible] = useState(true);
   const [hoveredSlot, setHoveredSlot] = useState<string | null>(null);
   const [filledSlots, setFilledSlots] = useState<Set<string>>(new Set());
+  const [activeSection, setActiveSection] = useState('experience');
+  const pageTwoRef = useRef<HTMLElement>(null);
 
   const handleWordHover = (key: string) => setHoveredSlot(key);
   const handleWordLeave = () => setHoveredSlot(null);
@@ -39,6 +106,14 @@ export default function HomeContent() {
       return next;
     });
   };
+
+  const handleSectionChange = useCallback((section: string) => {
+    setActiveSection(section);
+    // Scroll to top of page two when switching sections
+    if (pageTwoRef.current) {
+      pageTwoRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, []);
 
   return (
     <>
@@ -55,7 +130,7 @@ export default function HomeContent() {
                 variants={item}
                 className="font-heading text-2xl md:text-[1.75rem] lg:text-[2rem] leading-[1.55] md:leading-[1.5] text-foreground"
               >
-                Hello! I&apos;m Adrian, just a kid figuring out this whole growing up thing. I study Economics + LOC + AI at Northwestern. Previously, I built{' '}
+                Hello! I&apos;m Adrian. I study Economics, LOC, and AI at Northwestern. Previously, I built{' '}
                 <HoverImage src="/images/rhythm.jpg" alt="Rhythm lamp">super-lamps</HoverImage>
                 {' '}at{' '}
                 <a
@@ -82,7 +157,7 @@ export default function HomeContent() {
 
               <motion.div variants={item}>
                 <p className="font-heading text-2xl md:text-[1.75rem] lg:text-[2rem] leading-[1.55] md:leading-[1.5] text-foreground">
-                  I love people and helping lead teams with great culture. Currently bringing awesome vibes on the{' '}
+                  I love people and teams with great culture. Currently bringing awesome vibes on the{' '}
                   <span
                     onMouseEnter={() => handleWordHover('court')}
                     onMouseLeave={handleWordLeave}
@@ -193,8 +268,8 @@ export default function HomeContent() {
             </motion.div>
           </section>
 
-          {/* Below the fold — page two */}
-          <section className="min-h-screen px-6 md:px-[10vw] pt-0">
+          {/* Below the fold — page two (tab-based, one section at a time) */}
+          <section ref={pageTwoRef} className="min-h-screen px-6 md:px-[10vw] pt-0">
             {/* Sticky top bar */}
             <motion.div
               variants={item}
@@ -214,32 +289,25 @@ export default function HomeContent() {
               {/* Fixed sidebar */}
               <motion.div variants={item} className="hidden md:block w-32 shrink-0">
                 <div className="sticky top-20">
-                  <Sidebar />
+                  <Sidebar activeSection={activeSection} onSectionChange={handleSectionChange} />
                 </div>
               </motion.div>
 
-              {/* Main content area */}
-              <motion.div variants={item} className="flex-1 min-w-0">
-                <div id="experience" className="mb-24">
-                  <h2 className="text-xs uppercase tracking-widest text-foreground/40 mb-6">Experience</h2>
-                  <div className="h-48 border border-dashed border-foreground/20 rounded-md flex items-center justify-center text-foreground/30 text-sm">
-                    Experience content
-                  </div>
-                </div>
-
-                <div id="text" className="mb-24">
-                  <h2 className="text-xs uppercase tracking-widest text-foreground/40 mb-6">Text</h2>
-                  <div className="h-48 border border-dashed border-foreground/20 rounded-md flex items-center justify-center text-foreground/30 text-sm">
-                    Writing &amp; essays
-                  </div>
-                </div>
-
-                <div id="restaurants" className="mb-24">
-                  <h2 className="text-xs uppercase tracking-widest text-foreground/40 mb-6">Restaurants</h2>
-                  <div className="h-48 border border-dashed border-foreground/20 rounded-md flex items-center justify-center text-foreground/30 text-sm">
-                    Restaurant subpage
-                  </div>
-                </div>
+              {/* Main content area — only active section renders */}
+              <motion.div variants={item} className="flex-1 min-w-0 pb-24">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeSection}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -12 }}
+                    transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+                  >
+                    {activeSection === 'experience' && <ExperienceSection />}
+                    {activeSection === 'text' && <TextSection />}
+                    {activeSection === 'acknowledgments' && <AcknowledgmentsSection />}
+                  </motion.div>
+                </AnimatePresence>
               </motion.div>
             </div>
           </section>

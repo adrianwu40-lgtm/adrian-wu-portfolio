@@ -9,7 +9,7 @@
 - `components/HomeContent.tsx` — Main homepage layout with two-column blurbs and photo gallery
 - `components/Overlay.tsx` — Blue overlay with SVG text, click-to-dismiss (no scroll)
 - `components/HoverImage.tsx` — Reusable hover-to-reveal image component (edge-aware positioning, mobile tap support)
-- `components/Sidebar.tsx` — Nav (Home, Essays, Projects) — lives below the fold
+- `components/Sidebar.tsx` — Tab-based nav (Experience, Text, Acknowledgments) — switches content panels below the fold
 - `components/InfoCard.tsx` — About me popup (currently not linked from homepage)
 - `public/images/` — Portfolio photos (rhythm, michelin, volleyball, conducting, kitchen)
 
@@ -22,7 +22,10 @@
 - Right blurb has a "gallery" interaction: three dotted outlines below text that fill in when you hover (preview) or click (lock in) the words court/concert hall/kitchen
 - Sidebar navigation moved below the fold with a bouncing down arrow to indicate scroll
 - Down arrow updated to tall blue arrow with filled arrowhead (#0000DD), bouncing animation
-- Page two wireframe: sticky top bar (name + contact), left sidebar (Experience, Text, Restaurants), placeholder content sections
+- Page two is now tab-based: sidebar switches between Experience, Text, and Acknowledgments (one section visible at a time, not stacked)
+- Restaurants is embedded as a sub-section within Experience
+- Acknowledgments section added with book-style prose layout (italic intro, bold names, "this list is always growing" footer)
+- Scrolling up returns to landing page; scrolling back down preserves last active tab
 - Color palette: background #FAFAFA, text #1A1A2E, primary #2D2BCC, secondary #64648C, hover-trigger text #1A1A6E
 
 ## Deployment
@@ -31,9 +34,10 @@
 
 ## What We Still Have To Do
 - [ ] Refine colors and typography across the site
-- [ ] Fill in Experience section content on page two
-- [ ] Fill in Text (writing/essays) section content on page two
-- [ ] Build out Restaurants subpage with detailed content
+- [ ] Fill in Experience section content (page two tab)
+- [ ] Fill in Text (writing/essays) section content (page two tab)
+- [ ] Build out Restaurants sub-section within Experience
+- [ ] Fill in Acknowledgments with real names and stories
 - [ ] Visual design pass — better layout, spacing, positioning on homepage
 - [ ] Contact card — cutout face image as a hovering universal contact card in the top corner; tapping it reveals blue text with contact info (replaces current InfoCard approach)
 - [ ] Clean up loading states — box outlines, overlays, transitions, polish all the rough edges

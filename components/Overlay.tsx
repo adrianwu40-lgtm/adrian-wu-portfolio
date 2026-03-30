@@ -11,6 +11,7 @@ export default function Overlay({ onDismiss }: OverlayProps) {
   const [isMobile, setIsMobile] = useState(false);
   const [adrianBox, setAdrianBox] = useState<{ width: number; height: number } | null>(null);
   const [wuWidth, setWuWidth] = useState(0);
+  const [measured, setMeasured] = useState(false);
   const adrianRef = useRef<SVGTextElement>(null);
   const wuRef = useRef<SVGTextElement>(null);
   const est06Ref = useRef<SVGTextElement>(null);
@@ -28,6 +29,8 @@ export default function Overlay({ onDismiss }: OverlayProps) {
 
   useEffect(() => {
     measure();
+    // Mark as measured after a frame so positions are settled
+    requestAnimationFrame(() => setMeasured(true));
     window.addEventListener('resize', measure);
     return () => window.removeEventListener('resize', measure);
   }, [measure]);
@@ -68,9 +71,10 @@ export default function Overlay({ onDismiss }: OverlayProps) {
     <motion.section
       className="fixed inset-0 z-50 cursor-pointer"
       onClick={onDismiss}
-      initial={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: measured ? 1 : 0 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+      transition={{ duration: measured ? 0.5 : 0, ease: [0.4, 0, 0.2, 1] }}
     >
       <svg className="w-full h-full" style={{ userSelect: 'none' }}>
         <rect
