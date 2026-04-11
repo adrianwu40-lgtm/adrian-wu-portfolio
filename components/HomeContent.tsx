@@ -51,39 +51,36 @@ function TextSection() {
       <div className="h-48 border border-dashed border-foreground/20 rounded-md flex items-center justify-center text-foreground/30 text-sm">
         Writing &amp; essays
       </div>
-    </>
-  );
-}
 
-function AcknowledgmentsSection() {
-  return (
-    <>
-      <h2 className="text-xs uppercase tracking-widest text-foreground/40 mb-6">Acknowledgments</h2>
-      <div className="max-w-[600px]">
-        <p className="font-heading text-lg leading-[1.8] text-foreground/80 mb-8 italic">
-          None of the interesting things about me would exist without the interesting people around me. This is my attempt at writing them down.
-        </p>
-
-        <div className="space-y-6 font-heading text-[1.05rem] leading-[1.85] text-foreground/75">
-          <p>
-            To <strong className="text-foreground font-semibold">Mom and Dad</strong>, for everything before everything else. For letting me be curious and never once telling me a question was stupid.
+      {/* Acknowledgments — embedded within Text */}
+      <div className="mt-16">
+        <h3 className="text-xs uppercase tracking-widest text-foreground/40 mb-6">Acknowledgments</h3>
+        <div className="max-w-[600px]">
+          <p className="font-heading text-lg leading-[1.8] text-foreground/80 mb-8 italic">
+            None of the interesting things about me would exist without the interesting people around me. This is my attempt at writing them down.
           </p>
 
-          <p>
-            To <strong className="text-foreground font-semibold">[Name]</strong>, who taught me that showing up is the hardest and most important part. To <strong className="text-foreground font-semibold">[Name]</strong>, who showed me what it looks like to care about craft.
-          </p>
+          <div className="space-y-6 font-heading text-[1.05rem] leading-[1.85] text-foreground/75">
+            <p>
+              To <strong className="text-foreground font-semibold">Mom and Dad</strong>, for everything before everything else. For letting me be curious and never once telling me a question was stupid.
+            </p>
 
-          <p>
-            To <strong className="text-foreground font-semibold">[Name]</strong> and the rest of the team at <strong className="text-foreground font-semibold">[Place]</strong>, for the kind of mentorship that doesn&apos;t feel like mentorship — just people who believed in you before you did.
-          </p>
+            <p>
+              To <strong className="text-foreground font-semibold">[Name]</strong>, who taught me that showing up is the hardest and most important part. To <strong className="text-foreground font-semibold">[Name]</strong>, who showed me what it looks like to care about craft.
+            </p>
 
-          <p>
-            To every teammate, conductor, chef, and collaborator who made the work better by making the room better. You know who you are.
-          </p>
+            <p>
+              To <strong className="text-foreground font-semibold">[Name]</strong> and the rest of the team at <strong className="text-foreground font-semibold">[Place]</strong>, for the kind of mentorship that doesn&apos;t feel like mentorship — just people who believed in you before you did.
+            </p>
 
-          <p className="text-foreground/50 text-sm pt-4" style={{ fontFamily: 'var(--font-inter), sans-serif', fontWeight: 400 }}>
-            This list is always growing.
-          </p>
+            <p>
+              To every teammate, conductor, chef, and collaborator who made the work better by making the room better. You know who you are.
+            </p>
+
+            <p className="text-foreground/50 text-sm pt-4" style={{ fontFamily: 'var(--font-inter), sans-serif', fontWeight: 400 }}>
+              This list is always growing.
+            </p>
+          </div>
         </div>
       </div>
     </>
@@ -305,7 +302,6 @@ export default function HomeContent() {
                   >
                     {activeSection === 'experience' && <ExperienceSection />}
                     {activeSection === 'text' && <TextSection />}
-                    {activeSection === 'acknowledgments' && <AcknowledgmentsSection />}
                   </motion.div>
                 </AnimatePresence>
               </motion.div>

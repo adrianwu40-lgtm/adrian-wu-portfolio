@@ -3,7 +3,6 @@
 const sections = [
   { key: 'experience', label: 'Experience' },
   { key: 'text', label: 'Text' },
-  { key: 'acknowledgments', label: 'Acknowledgments' },
 ];
 
 interface SidebarProps {
