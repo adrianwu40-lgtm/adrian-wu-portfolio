@@ -9,7 +9,7 @@
 - `components/HomeContent.tsx` — Main homepage layout with two-column blurbs and photo gallery
 - `components/Overlay.tsx` — Blue overlay with SVG text, click-to-dismiss (no scroll)
 - `components/HoverImage.tsx` — Reusable hover-to-reveal image component (edge-aware positioning, mobile tap support)
-- `components/Sidebar.tsx` — Tab-based nav (Experience, Text, Acknowledgments) — switches content panels below the fold
+- `components/Sidebar.tsx` — Tab-based nav (Experience, Text) — switches content panels below the fold
 - `components/InfoCard.tsx` — About me popup (currently not linked from homepage)
 - `public/images/` — Portfolio photos (rhythm, michelin, volleyball, conducting, kitchen)
 
@@ -22,9 +22,10 @@
 - Right blurb has a "gallery" interaction: three dotted outlines below text that fill in when you hover (preview) or click (lock in) the words court/concert hall/kitchen
 - Sidebar navigation moved below the fold with a bouncing down arrow to indicate scroll
 - Down arrow updated to tall blue arrow with filled arrowhead (#0000DD), bouncing animation
-- Page two is now tab-based: sidebar switches between Experience, Text, and Acknowledgments (one section visible at a time, not stacked)
+- Page two is now tab-based: sidebar switches between Experience and Text (two tabs only)
 - Restaurants is embedded as a sub-section within Experience
-- Acknowledgments section added with book-style prose layout (italic intro, bold names, "this list is always growing" footer)
+- Acknowledgments moved from its own tab into a sub-section within Text
+- Acknowledgments has book-style prose layout (italic intro, bold names, "this list is always growing" footer)
 - Scrolling up returns to landing page; scrolling back down preserves last active tab
 - Color palette: background #FAFAFA, text #1A1A2E, primary #2D2BCC, secondary #64648C, hover-trigger text #1A1A6E
 
@@ -32,12 +33,18 @@
 - Domain: adrianwu.com, registered on **Namecheap**
 - Deployed via **Vercel**, connected to GitHub — pushes to main auto-deploy
 
+## Experience Section Vision
+The Experience tab is NOT a resume. It showcases three deep life passions — **volleyball**, **classical music**, and **food/restaurants** — each pursued seriously over months to years. The goal is to show depth, intentionality, and signal through unconventional presentation. Each passion should feel immersive, not like a bullet list.
+
+**Transfer story:** If transferring schools comes up in the experience content, it should get its own floating box/card with a personal write-up — it was a monumental decision worth someone knowing about.
+
+**Layout is still TBD** — exploring options like horizontal scroll, vertical timeline, cards/tiles, magazine-style mixed media, or minimal entry points that expand into deeper views. The format should catch eyes and feel personal, not conventional.
+
 ## What We Still Have To Do
-- [ ] Refine colors and typography across the site
-- [ ] Fill in Experience section content (page two tab)
+- [ ] **Design and build Experience section** — choose layout structure for the three passions (volleyball, classical music, food), still brainstorming format
 - [ ] Fill in Text (writing/essays) section content (page two tab)
-- [ ] Build out Restaurants sub-section within Experience
-- [ ] Fill in Acknowledgments with real names and stories
+- [ ] Fill in Acknowledgments with real names and stories (now a sub-section in Text)
+- [ ] Refine colors and typography across the site
 - [ ] Visual design pass — better layout, spacing, positioning on homepage
 - [ ] Contact card — cutout face image as a hovering universal contact card in the top corner; tapping it reveals blue text with contact info (replaces current InfoCard approach)
 - [ ] Clean up loading states — box outlines, overlays, transitions, polish all the rough edges
