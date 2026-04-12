@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Sidebar from '@/components/Sidebar';
 import Overlay from '@/components/Overlay';
 import HoverImage from '@/components/HoverImage';
+import Timeline from '@/components/Timeline';
 
 const container = {
   hidden: { opacity: 0 },
@@ -26,22 +27,7 @@ const galleryItems = [
 ] as const;
 
 function ExperienceSection() {
-  return (
-    <>
-      <h2 className="text-xs uppercase tracking-widest text-foreground/40 mb-6">Experience</h2>
-      <div className="h-48 border border-dashed border-foreground/20 rounded-md flex items-center justify-center text-foreground/30 text-sm">
-        Experience content
-      </div>
-
-      {/* Restaurants — embedded within Experience */}
-      <div className="mt-16">
-        <h3 className="text-xs uppercase tracking-widest text-foreground/40 mb-6">Restaurants</h3>
-        <div className="h-48 border border-dashed border-foreground/20 rounded-md flex items-center justify-center text-foreground/30 text-sm">
-          Restaurant subpage
-        </div>
-      </div>
-    </>
-  );
+  return <Timeline />;
 }
 
 function TextSection() {

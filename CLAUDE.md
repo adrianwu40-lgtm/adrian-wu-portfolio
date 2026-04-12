@@ -11,6 +11,12 @@
 - `components/HoverImage.tsx` — Reusable hover-to-reveal image component (edge-aware positioning, mobile tap support)
 - `components/Sidebar.tsx` — Tab-based nav (Experience, Text) — switches content panels below the fold
 - `components/InfoCard.tsx` — About me popup (currently not linked from homepage)
+- `components/Timeline.tsx` — Horizontal branching timeline for Experience section (native horizontal scroll, fork click → essay subpage)
+- `components/TimelineSVG.tsx` — SVG rendering for trunk line and branch curves (scroll-linked pathLength animation)
+- `components/TimelineNode.tsx` — Individual timeline nodes (trunk dots + fork circles with hover states)
+- `components/ForkEssay.tsx` — Essay subpage shown when a fork is clicked (back button, clean essay layout)
+- `lib/timelineData.ts` — Timeline node positions, types, and constants
+- `lib/forkEssays.tsx` — Fork essay content as JSX (placeholder text — Adrian needs to write the real essays)
 - `public/images/` — Portfolio photos (rhythm, michelin, volleyball, conducting, kitchen)
 
 ## What We Did
@@ -23,25 +29,27 @@
 - Sidebar navigation moved below the fold with a bouncing down arrow to indicate scroll
 - Down arrow updated to tall blue arrow with filled arrowhead (#0000DD), bouncing animation
 - Page two is now tab-based: sidebar switches between Experience and Text (two tabs only)
-- Restaurants is embedded as a sub-section within Experience
 - Acknowledgments moved from its own tab into a sub-section within Text
 - Acknowledgments has book-style prose layout (italic intro, bold names, "this list is always growing" footer)
 - Scrolling up returns to landing page; scrolling back down preserves last active tab
 - Color palette: background #FAFAFA, text #1A1A2E, primary #2D2BCC, secondary #64648C, hover-trigger text #1A1A6E
+- **Experience section: horizontal branching timeline** — conventional trunk (Freshman Year → Now) with 4 fork branches (Conducting, Kitchens, Transferring, Volleyball) alternating up/down. Native horizontal scroll. Click a fork → slides into a clean essay subpage. Back button returns to timeline. Scroll-linked animations: branches draw in, nodes fade in as they enter viewport. Edge fade gradients hint at more content.
 
 ## Deployment
 - Domain: adrianwu.com, registered on **Namecheap**
 - Deployed via **Vercel**, connected to GitHub — pushes to main auto-deploy
 
 ## Experience Section Vision
-The Experience tab is NOT a resume. It showcases three deep life passions — **volleyball**, **classical music**, and **food/restaurants** — each pursued seriously over months to years. The goal is to show depth, intentionality, and signal through unconventional presentation. Each passion should feel immersive, not like a bullet list.
+The Experience tab is NOT a resume. It's a horizontal branching timeline — a conventional life trunk with 4 dramatic forks that each open into a personal essay. The design says "my life doesn't fit on one track." The fork essays are where Adrian's writing voice does the heavy lifting. Design is additive, not the star.
 
-**Transfer story:** If transferring schools comes up in the experience content, it should get its own floating box/card with a personal write-up — it was a monumental decision worth someone knowing about.
-
-**Layout is still TBD** — exploring options like horizontal scroll, vertical timeline, cards/tiles, magazine-style mixed media, or minimal entry points that expand into deeper views. The format should catch eyes and feel personal, not conventional.
+**Four forks:** Conducting, Kitchens (food/restaurants), Transferring (UIUC → Northwestern), Volleyball
+**Essay format:** Clean, simple essay pages. Same color scheme. Just writing. No fancy design tricks on the essay page itself.
+**No mobile optimization** — desktop only for now.
 
 ## What We Still Have To Do
-- [ ] **Design and build Experience section** — choose layout structure for the three passions (volleyball, classical music, food), still brainstorming format
+- [ ] **Write the four fork essays** — conducting, kitchens, transferring, volleyball (edit `lib/forkEssays.tsx`)
+- [ ] **Adjust timeline trunk nodes** — update labels/positions in `lib/timelineData.ts` to match Adrian's actual timeline
+- [ ] **Polish timeline design** — spacing, node sizes, branch curves, scroll feel, visual refinement
 - [ ] Fill in Text (writing/essays) section content (page two tab)
 - [ ] Fill in Acknowledgments with real names and stories (now a sub-section in Text)
 - [ ] Refine colors and typography across the site
