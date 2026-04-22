@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Newsreader } from "next/font/google";
 import "./globals.css";
+import PasswordGate from "@/components/PasswordGate";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -27,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${newsreader.variable} antialiased`}>
-        {children}
+        <PasswordGate>{children}</PasswordGate>
       </body>
     </html>
   );
